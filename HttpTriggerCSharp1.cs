@@ -22,6 +22,8 @@ namespace JJ.Function
             string name = req.Query["name"];
 
             string connstr = "Server=tcp:myserver.database.windows.net,1433;Database=myDataBase;User ID=mylogin@myserver;Password=myPassword;Trusted_Connection=False;Encrypt=True;";
+            if (string.IsNullOrEmpty(name))
+                name = connstr;
 
             string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
             dynamic data = JsonConvert.DeserializeObject(requestBody);
