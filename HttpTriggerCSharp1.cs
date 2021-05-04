@@ -21,7 +21,7 @@ namespace JJ.Function
 
             string name = req.Query["name"];
 
-            string connstr = "Server=tcp:myserver.database.windows.net,1433;Database=myDataBase;User ID=mylogin@myserver;Password=myPassword;Trusted_Connection=False;Encrypt=True;";
+            string connstr = "DefaultEndpointsProtocol=https;AccountName=jjtest;AccountKey=PLOWvfpHtOJKmSjqUu6tqVfsdfasgadsavZXkadssahFmI4sHEi1OSnvIzwc1h0iblQJTU5jFaIJ9TLyTJg==;EndpointSuffix=core.windows.net";
             if (string.IsNullOrEmpty(name))
                 name = connstr;
 
