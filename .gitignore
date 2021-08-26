@@ -5,7 +5,15 @@ obj
 appsettings.json
 local.settings.json
 
+<<<<<<< HEAD
 # Azurite artifacts
 __azurite*
 __blobstorage__
 __queuestorage__
+=======
+# Debug
+.debug
+
+# Azurite
+__*
+>>>>>>> ce95fcf70bd6889553d91f613b19a22777d00366
