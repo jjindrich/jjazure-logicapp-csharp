@@ -1,0 +1,82 @@
+{
+    "definition": {
+        "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+        "actions": {
+            "Response": {
+                "type": "Response",
+                "kind": "http",
+                "inputs": {
+                    "statusCode": 200,
+                    "body": "JJ obsah:@{variables('obsah')}"
+                },
+                "runAfter": {
+                    "Condition": [
+                        "Succeeded"
+                    ]
+                }
+            },
+            "Condition": {
+                "type": "If",
+                "expression": {
+                    "and": [
+                        {
+                            "equals": [
+                                "@triggerOutputs()['relativePathParameters']['name']",
+                                "a"
+                            ]
+                        }
+                    ]
+                },
+                "actions": {
+                    "Set_variable": {
+                        "type": "SetVariable",
+                        "inputs": {
+                            "name": "obsah",
+                            "value": "prislo a"
+                        },
+                        "runAfter": {}
+                    }
+                },
+                "runAfter": {
+                    "Initialize_variable": [
+                        "Succeeded"
+                    ]
+                }
+            },
+            "Initialize_variable": {
+                "type": "InitializeVariable",
+                "inputs": {
+                    "variables": [
+                        {
+                            "name": "obsah",
+                            "type": "string",
+                            "value": "nic"
+                        }
+                    ]
+                },
+                "runAfter": {}
+            }
+        },
+        "triggers": {
+            "manual": {
+                "type": "Request",
+                "kind": "Http",
+                "inputs": {
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                            "name": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "method": "GET",
+                    "relativePath": "/{name}"
+                }
+            }
+        },
+        "contentVersion": "1.0.0.0",
+        "outputs": {}
+    },
+    "kind": "Stateless"
+}
